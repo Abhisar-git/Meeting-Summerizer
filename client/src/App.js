@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './App.css';
 
+// API base URL - use environment variable or fallback to localhost
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 function App() {
   const [activeTab, setActiveTab] = useState('upload');
   const [transcript, setTranscript] = useState('');
@@ -33,7 +36,7 @@ function App() {
       const formData = new FormData();
       formData.append('transcript', file);
 
-      const response = await axios.post('/api/upload', formData, {
+      const response = await axios.post(`${API_BASE_URL}/api/upload`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
@@ -76,7 +79,7 @@ function App() {
     setError('');
 
     try {
-      const response = await axios.post('/api/summary', {
+      const response = await axios.post(`${API_BASE_URL}/api/summary`, {
         transcriptContent: transcript,
         customPrompt: customPrompt
       });
@@ -141,7 +144,7 @@ function App() {
     setError('');
 
     try {
-      await axios.post('/api/send-email', {
+      await axios.post(`${API_BASE_URL}/api/send-email`, {
         summaryId: summaryId,
         recipients: recipients,
         subject: emailSubject,
