@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 5000;
 app.use(cors({
   origin: [
     process.env.CORS_ORIGIN || 'http://localhost:3000',
-    'https://your-vercel-app-name.vercel.app',
+    'https://meeting-summerizer-production.up.railway.app',
     /\.vercel\.app$/  // Allow all Vercel preview deployments
   ],
   credentials: true
