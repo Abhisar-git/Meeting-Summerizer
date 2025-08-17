@@ -3,7 +3,7 @@ import axios from 'axios';
 import './App.css';
 
 // API base URL - use environment variable or fallback to localhost
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+const API_BASE_URL = process.env.production.REACT_APP_API_URL || 'http://localhost:5000';
 
 function App() {
   const [activeTab, setActiveTab] = useState('upload');
